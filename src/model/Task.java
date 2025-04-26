@@ -45,21 +45,12 @@ public class Task {
         if (this == obj) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         Task anotherTask = (Task) obj;
-        return Objects.equals(name, anotherTask.name) && Objects.equals(details, anotherTask.details);
+        return Objects.equals(id, anotherTask.id);
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-
-        if (name != null) {
-            result += name.hashCode();
-        }
-        result *= 31;
-        if (details != null) {
-            result += details.hashCode();
-        }
-        return result;
+        return Objects.hashCode(id);
     }
 
 }

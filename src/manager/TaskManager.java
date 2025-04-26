@@ -130,18 +130,16 @@ public class TaskManager {
     }
 
     public Location checkObjectLocation(int objectId) {
-        Location location = Location.NOT_FOUND;
-
         if (tasks.containsKey(objectId)) {
-            location = Location.TASKS;
+            return Location.TASKS;
         }
         if (subtasks.containsKey(objectId)) {
-            location = Location.SUBTASKS;
+            return Location.SUBTASKS;
         }
         if (epics.containsKey(objectId)) {
-            location = Location.EPICS;
+            return Location.EPICS;
         }
-        return location;
+        return Location.NOT_FOUND;
     }
 
     public enum Location {
