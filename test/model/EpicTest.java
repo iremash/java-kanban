@@ -2,7 +2,6 @@ package model;
 
 import manager.Managers;
 import manager.TaskManager;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,6 +25,4 @@ class EpicTest {
         assertEquals(epic1Id, epic2Id, "Задачи не совпадают.");
         assertNotEquals(epic1Id, epic3Id, "Задачи совпадают.");
     }
-
-
 }

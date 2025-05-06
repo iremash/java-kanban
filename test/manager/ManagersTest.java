@@ -18,4 +18,5 @@ class ManagersTest {
         HistoryManager historyManager = managers.getDefaultHistory();
         assertNotNull(historyManager, "Менеджер не возращается");
     }
+
 }

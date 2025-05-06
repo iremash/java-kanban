@@ -35,5 +35,4 @@ class InMemoryTaskManagerTest {
         taskManager.addTask(task2);
         assertNotEquals(task1, task2, "У разных задач меняется id");
     }
-
 }

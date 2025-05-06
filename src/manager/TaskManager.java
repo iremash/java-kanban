@@ -39,4 +39,5 @@ public interface TaskManager {
     void updateEpic(int epicId, Epic epic);
 
     ArrayList<Task> getHistory();
+
 }

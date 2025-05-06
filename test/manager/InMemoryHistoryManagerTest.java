@@ -1,6 +1,5 @@
 package manager;
 
-import model.Subtask;
 import model.Task;
 import model.TaskStatus;
 import org.junit.jupiter.api.Test;
@@ -25,5 +24,4 @@ class InMemoryHistoryManagerTest {
         assertNotEquals(task.getDetails(), oldTask.getDetails());
         assertNotEquals(task.getStatus(), oldTask.getStatus());
     }
-
 }

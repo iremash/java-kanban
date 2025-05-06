@@ -10,6 +10,4 @@ public final class Managers {
         HistoryManager historyManager = new InMemoryHistoryManager();
         return historyManager;
     }
-
-
 }

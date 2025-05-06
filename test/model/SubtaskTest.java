@@ -33,5 +33,4 @@ class SubtaskTest {
         assertNotEquals(subtask1Id, subtask3Id, "Задачи совпадают.");
         assertNotEquals(subtask1Id, subtask4Id, "Задачи совпадают.");
     }
-
 }

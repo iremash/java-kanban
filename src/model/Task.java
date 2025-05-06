@@ -55,5 +55,4 @@ public class Task {
         result += Objects.hashCode(details);
         return result;
     }
-
 }

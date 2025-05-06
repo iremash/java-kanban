@@ -21,4 +21,5 @@ public class InMemoryHistoryManager implements HistoryManager {
     public ArrayList<Task> getHistory() {
         return history;
     }
+
 }
