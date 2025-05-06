@@ -7,147 +7,36 @@ import model.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TaskManager {
-    private final HashMap<Integer, Task> tasks = new HashMap<>();
-    private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    private final HashMap<Integer, Epic> epics = new HashMap<>();
-    private int id = 0;
+public interface TaskManager {
+    void addTask(Task task);
 
-    public int generateId() {
-        id++;
-        return id;
-    }
+    void addEpic(Epic epic);
 
-    public void addTask(Task task) {
-        for (Task oldTask : tasks.values()) {
-            if (oldTask.equals(task)) {
-                return;
-            }
-        }
-        task.setId(generateId());
-        tasks.put(task.getId(), task);
-    }
+    void addSubtask(Subtask subtask);
 
-    public void addEpic(Epic epic) {
-        for (Task oldEpic : epics.values()) {
-            if (epic.equals(oldEpic)) {
-                return;
-            }
-        }
-        epic.setId(generateId());
-        epics.put(epic.getId(), epic);
-    }
+    HashMap<Integer, Task> getTasks();
 
-    public void addSubtaskToEpic(Epic epic, Subtask subtask) {
-        if (!epic.hasSubtask(subtask)) {
-            subtask.setId(generateId());
-            subtasks.put(subtask.getId(), subtask);
-            epic.getSubtasks().add(subtask);
-            epic.checkStatus();
-        }
-    }
+    HashMap<Integer, Epic> getEpics();
 
-    public HashMap<Integer, Task> getAllTasks() {
-        return tasks;
-    }
+    HashMap<Integer, Subtask> getSubtasks();
 
-    public HashMap<Integer, Epic> getAllEpics() {
-        return epics;
-    }
+    ArrayList<Subtask> getEpicsSubtasks(Epic epic);
 
-    public HashMap<Integer, Subtask> getAllSubtasks() {
-        return subtasks;
-    }
+    void deleteAllTasks();
 
-    public ArrayList<Subtask> getEpicsSubtasks(Epic epic) {
-        return epic.getSubtasks();
-    }
+    void deleteAllSubtasks();
 
-    public void deleteAllTasks() {
-        tasks.clear();
-    }
+    void deleteAllEpics();
 
-    public void deleteAllSubtasks() {
-        subtasks.clear();
-    }
+    Object getById(int objectId);
 
-    public void deleteAllEpics() {
-        epics.clear();
-    }
+    void removeById(int objectId);
 
-    public Object findById(int objectId) {
-        Object result = Location.NOT_FOUND;
-        Location location = checkObjectLocation(objectId);
+    void updateTask(int taskId, Task task);
 
-        switch (location) {
-            case TASKS:
-                result = tasks.get(objectId);
-                break;
-            case SUBTASKS:
-                result = subtasks.get(objectId);
-                break;
-            case EPICS:
-                result = epics.get(objectId);
-                break;
-            default:
-        }
-        return result;
-    }
+    void updateSubtask(int subtaskId, Subtask subtask);
 
-    public void removeById(int objectId) {
-        Location location = checkObjectLocation(objectId);
+    void updateEpic(int epicId, Epic epic);
 
-        switch (location) {
-            case TASKS:
-                tasks.remove(objectId);
-                break;
-            case SUBTASKS:
-                Subtask subtask = subtasks.get(objectId);
-                Epic epic = subtask.getEpic();
-                epic.getSubtasks().remove(subtask);
-                subtasks.remove(objectId);
-                break;
-            case EPICS:
-                epics.remove(objectId);
-                break;
-            default:
-        }
-    }
-
-    public void updateTask(int taskId, Task task) {
-        tasks.put(taskId, task);
-    }
-
-    public void updateSubtask(int subtaskId, Subtask subtask) {
-        subtasks.put(subtaskId, subtask);
-        subtask.getEpic().updateSubtask(subtask);
-        subtask.getEpic().checkStatus();
-    }
-
-    public void updateEpic(int epicId, Epic epic) {
-        epics.put(epicId, epic);
-        epic.checkStatus();
-    }
-
-    public Location checkObjectLocation(int objectId) {
-        if (tasks.containsKey(objectId)) {
-            return Location.TASKS;
-        }
-        if (subtasks.containsKey(objectId)) {
-            return Location.SUBTASKS;
-        }
-        if (epics.containsKey(objectId)) {
-            return Location.EPICS;
-        }
-        return Location.NOT_FOUND;
-    }
-
-    public enum Location {
-        TASKS,
-        EPICS,
-        SUBTASKS,
-        NOT_FOUND
-    }
-
-
+    ArrayList<Task> getHistory();
 }

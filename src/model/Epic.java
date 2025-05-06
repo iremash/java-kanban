@@ -46,6 +46,7 @@ public class Epic extends Task {
     public boolean hasSubtask(Subtask anotherSubtask) {
         for (Subtask subtask : subtasks) {
             if (subtask.equals(anotherSubtask)) {
+                anotherSubtask.setId(subtask.getId());
                 return true;
             }
         }
