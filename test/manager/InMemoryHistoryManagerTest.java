@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static manager.Managers.*;
 
 class InMemoryHistoryManagerTest {
-    Managers managers = new Managers();
-    TaskManager taskManager = managers.getDefault();
-    HistoryManager historyManager = managers.getDefaultHistory();
+    TaskManager taskManager = getDefault();
 
     @Test
     void shouldSaveOldVersionOfTasksAdded() {

@@ -1,24 +1,27 @@
-import manager.InMemoryTaskManager;
+
+import manager.Managers;
 import manager.TaskManager;
 import model.Epic;
 import model.Subtask;
 import model.Task;
 import model.TaskStatus;
 
+import static manager.Managers.*;
+
 public class Main {
     public static void main(String[] args) {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        TaskManager taskManager = getDefault();
 
-        Task task1 = new Task("Lol", "bebebbebeb", TaskStatus.IN_PROGRESS);
-        Task task2 = new Task("kek", "pupupupp");
+        Task task1 = new Task("Task1", "description1", TaskStatus.IN_PROGRESS);
+        Task task2 = new Task("Task2", "description2");
 
-        Epic epic1 = new Epic("vow", "jkjaslfkl");
+        Epic epic1 = new Epic("Epic", "epicInf");
 
         taskManager.addEpic(epic1);
 
-        Subtask subtask1 = new Subtask("io", "njn", TaskStatus.DONE, epic1);
-        Subtask subtask2 = new Subtask("i", "njhjn", TaskStatus.DONE, epic1);
-        Subtask subtask3 = new Subtask("o", "nnkjn", TaskStatus.NEW, epic1);
+        Subtask subtask1 = new Subtask("subtask1", "inf1", TaskStatus.DONE, epic1);
+        Subtask subtask2 = new Subtask("subtask2", "inf2", TaskStatus.DONE, epic1);
+        Subtask subtask3 = new Subtask("subtask3", "inf3", TaskStatus.NEW, epic1);
 
         taskManager.addSubtask(subtask1);
         taskManager.addSubtask(subtask2);
@@ -40,7 +43,7 @@ public class Main {
 
         System.out.println(epic1.getStatus());
 
-        Subtask subtask4 = new Subtask("j", "jnijsufi", epic1);
+        Subtask subtask4 = new Subtask("subtask4", "inf4", epic1);
         taskManager.updateSubtask(subtask1.getId(), subtask4);
         System.out.println(taskManager.getSubtasks());
         System.out.println(taskManager.getEpicsSubtasks(epic1));

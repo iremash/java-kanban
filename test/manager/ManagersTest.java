@@ -3,19 +3,18 @@ package manager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static manager.Managers.*;
 
 class ManagersTest {
-    Managers managers = new Managers();
-
     @Test
     void getDefaultReturnsReadyForWorkManager() {
-        TaskManager taskManager = managers.getDefault();
+        TaskManager taskManager = getDefault();
         assertNotNull(taskManager, "Менеджер не возращается");
     }
 
     @Test
     void getDefaultHistoryReturnsReadyForWorkHistoryManager() {
-        HistoryManager historyManager = managers.getDefaultHistory();
+        HistoryManager historyManager = getDefaultHistory();
         assertNotNull(historyManager, "Менеджер не возращается");
     }
 

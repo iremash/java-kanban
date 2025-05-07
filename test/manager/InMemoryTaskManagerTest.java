@@ -6,10 +6,10 @@ import model.Task;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static manager.Managers.*;
 
 class InMemoryTaskManagerTest {
-    Managers managers = new Managers();
-    TaskManager taskManager = managers.getDefault();
+    TaskManager taskManager = getDefault();
 
     @Test
     void shouldAddDifferentTaskAndFindThemById() {
